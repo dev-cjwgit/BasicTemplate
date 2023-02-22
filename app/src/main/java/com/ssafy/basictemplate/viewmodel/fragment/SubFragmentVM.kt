@@ -10,5 +10,5 @@ import com.ssafy.basictemplate.util.Event
 
 
 class SubFragmentVM : ViewModel() {
-    val message = MutableLiveData<String>("메인 프래그먼트입니다!")
+    val message = MutableLiveData<String>("서브 프래그먼트입니다!")
 }

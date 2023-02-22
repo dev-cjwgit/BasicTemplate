@@ -17,7 +17,6 @@ class LoginActivity : AppCompatActivity() {
     }
     // Log.d(TAG, "LoginActivity - loginVM - pwEditText 라이브 데이터 값 변경 : $it")
 
-    //    private lateinit var viewModel: LoginVM
     private val viewModel: LoginVM by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
