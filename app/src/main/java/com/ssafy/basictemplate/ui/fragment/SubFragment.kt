@@ -9,17 +9,19 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.ssafy.basictemplate.R
 import com.ssafy.basictemplate.databinding.FragmentMainBinding
+import com.ssafy.basictemplate.databinding.FragmentSubBinding
 import com.ssafy.basictemplate.viewmodel.activity.MainVM
 import com.ssafy.basictemplate.viewmodel.fragment.MainFragmentVM
+import com.ssafy.basictemplate.viewmodel.fragment.SubFragmentVM
 
-class MainFragment : Fragment() {
+class SubFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = SubFragment()
     }
 
-    private lateinit var viewModel: MainFragmentVM
-    private lateinit var binding: FragmentMainBinding
+    private lateinit var viewModel: SubFragmentVM
+    private lateinit var binding: FragmentSubBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,9 +32,9 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sub, container, false)
         activity?.let {
-            viewModel = ViewModelProvider(it).get(MainFragmentVM::class.java)
+            viewModel = ViewModelProvider(it).get(SubFragmentVM::class.java)
             binding.viewModel = viewModel
             binding.lifecycleOwner = this
         }

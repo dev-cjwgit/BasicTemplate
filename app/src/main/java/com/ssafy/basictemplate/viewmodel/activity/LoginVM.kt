@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ssafy.basictemplate.util.ActivityCode
 import com.ssafy.basictemplate.util.Event
+import java.util.*
 
 class LoginVM : ViewModel() {
     /*
