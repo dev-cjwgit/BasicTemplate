@@ -26,9 +26,6 @@ class SubFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(SubFragmentVM::class.java)
-
         _binding = FragmentSubBinding.inflate(inflater, container, false)
         activity?.let {
             viewModel = ViewModelProvider(it).get(SubFragmentVM::class.java)

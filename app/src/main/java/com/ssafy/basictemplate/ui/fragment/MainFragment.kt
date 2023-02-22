@@ -25,8 +25,6 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(MainFragmentVM::class.java)
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         activity?.let {
             viewModel = ViewModelProvider(it).get(MainFragmentVM::class.java)
