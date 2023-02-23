@@ -1,4 +1,4 @@
-package com.ssafy.basictemplate.ui.fragment
+package com.ssafy.basictemplate.behind.fragment
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,11 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.databinding.DataBindingUtil
-import com.ssafy.basictemplate.R
 import com.ssafy.basictemplate.databinding.FragmentSubBinding
-import com.ssafy.basictemplate.viewmodel.fragment.MainFragmentVM
 import com.ssafy.basictemplate.viewmodel.fragment.SubFragmentVM
 
 class SubFragment : Fragment() {

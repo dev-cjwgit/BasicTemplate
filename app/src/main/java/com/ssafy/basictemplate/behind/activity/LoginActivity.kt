@@ -1,4 +1,4 @@
-package com.ssafy.basictemplate.ui.activity
+package com.ssafy.basictemplate.behind.activity
 
 import android.content.Intent
 import android.os.Bundle

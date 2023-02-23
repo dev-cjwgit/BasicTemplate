@@ -6,13 +6,13 @@
     app:startDestination="@+id/navigation_home">
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.ssafy.basictemplate.ui.fragment.MainFragment"
+        android:name="com.ssafy.basictemplate.behind.fragment.MainFragment"
         android:label="MainFragment"
         tools:layout="@layout/fragment_main" />
 
     <fragment
         android:id="@+id/navigation_sub"
-        android:name="com.ssafy.basictemplate.ui.fragment.SubFragment"
+        android:name="com.ssafy.basictemplate.behind.fragment.SubFragment"
         android:label="SubFragment"
         tools:layout="@layout/fragment_sub" />
 </navigation>
