@@ -10,6 +10,7 @@ import org.web3j.protocol.Web3j
 import org.web3j.protocol.http.HttpService
 import java.math.BigInteger
 import kotlin.concurrent.thread
+import java.util.concurrent.Future;
 import kotlin.math.log
 
 
@@ -44,10 +45,14 @@ class MainFragmentVM : ViewModel() {
             Contract_sol_Storage.load(contractAddress, web3, credentials, gasPrice, gasLimit)
 
         thread {
-            val temp = contract.retrieve().sendAsync().get()
+            // 값 읽기는 어떻게 읽는거냐
+            val temp = contract.retrieve().sendAsync()
+            val temp1 = temp.get()
+            Log.d(LoginVM.TAG, "recv result ${temp}")
 
+            // TODO: 값 쓰기는 되는데
             val data = contract.store(BigInteger.valueOf(50000)).sendAsync()
-            Log.d(LoginVM.TAG, "result ${data.get().blockNumber}, ${data.get().gasUsed}")
+            Log.d(LoginVM.TAG, "send result ${data.get().blockNumber}, ${data.get().gasUsed}")
         }
 //        Log.d(LoginVM.TAG, " ${contract.isValid}")
         println("")
