@@ -3,10 +3,14 @@ package com.ssafy.basictemplate.viewmodel.fragment
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.ssafy.basictemplate.blockchain.Contract_sol_Storage
 import com.ssafy.basictemplate.viewmodel.activity.LoginVM
+import org.web3j.crypto.Credentials
 import org.web3j.protocol.Web3j
-import org.web3j.protocol.core.methods.response.Web3ClientVersion
 import org.web3j.protocol.http.HttpService
+import java.math.BigInteger
+import kotlin.concurrent.thread
+import kotlin.math.log
 
 
 class MainFragmentVM : ViewModel() {
@@ -26,13 +30,41 @@ class MainFragmentVM : ViewModel() {
             LoginVM.TAG,
             "데이터 " + web3ClientVersion.web3ClientVersion
         )
-//        val web3 = Web3j.build(HttpService("http://183.97.128.216:7545/")) // defaults to http://localhost:8545/
-//
-//        web3.web3ClientVersion().flowable().subscribe { x: Web3ClientVersion ->
-//            println(
-//                x.web3ClientVersion
-//            )
-//        }
+        // contract address
+        val contractAddress = "0x5b1869D9A4C187F2EAa108f3062412ecf0526b24"
+        // gas limit
+        val gasLimit: BigInteger = BigInteger.valueOf(3000000)
+        // gas price
+        val gasPrice: BigInteger = BigInteger.valueOf(3000)
+        // create credentials w/ your private key
+        val credentials =
+            Credentials.create("4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d")
+
+        val contract =
+            Contract_sol_Storage.load(contractAddress, web3, credentials, gasPrice, gasLimit)
+
+        thread {
+            val temp = contract.retrieve().sendAsync().get()
+
+            val data = contract.store(BigInteger.valueOf(50000)).sendAsync()
+            Log.d(LoginVM.TAG, "result ${data.get().blockNumber}, ${data.get().gasUsed}")
+        }
+//        Log.d(LoginVM.TAG, " ${contract.isValid}")
+        println("")
+        /*
+        // read from contract
+            val greeting: Future<String>? = greeter.greet().sendAsync()
+            val convertToString: String? = greeting?.get()
+            Log.d(TAG, "greeting value returned: $convertToString")
+         */
+
+        /*
+            // write to contract
+            val transactionReceipt: Future<TransactionReceipt>? = greeter.changeGreeting("Greeting changed from an Android App (ಠ_ಠ) ").sendAsync()
+            val result = "Successful transaction. Gas used: ${transactionReceipt?.get()?.blockNumber}  ${transactionReceipt?.get()?.gasUsed}"
+            Log.d(TAG, result)
+         */
+
 
     }
 }
