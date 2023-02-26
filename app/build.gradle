@@ -56,8 +56,9 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 
-    // web3 for android
-    implementation 'org.web3j:core:4.2.0-android'
+    // web3 for android (Smart Contract)
+    implementation 'org.web3j:infura:3.3.1-android'
+    implementation group: 'org.web3j', name: 'core', version: '4.8.8-android'
 
     // default
     implementation 'androidx.core:core-ktx:1.7.0'
