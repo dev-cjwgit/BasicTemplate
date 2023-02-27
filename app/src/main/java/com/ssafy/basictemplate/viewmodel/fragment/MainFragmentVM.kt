@@ -10,8 +10,6 @@ import org.web3j.protocol.Web3j
 import org.web3j.protocol.http.HttpService
 import java.math.BigInteger
 import kotlin.concurrent.thread
-import java.util.concurrent.Future;
-import kotlin.math.log
 
 
 class MainFragmentVM : ViewModel() {
@@ -34,7 +32,7 @@ class MainFragmentVM : ViewModel() {
             "데이터 " + web3ClientVersion.web3ClientVersion
         )
         // contract address
-        val contractAddress = "0xe982E462b094850F12AF94d21D470e21bE9D0E9C"
+        val contractAddress = "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550"
         // gas limit
         val gasLimit: BigInteger = BigInteger.valueOf(3000000)
         // gas price
@@ -47,14 +45,14 @@ class MainFragmentVM : ViewModel() {
             Contract_sol_Storage.load(contractAddress, web3, credentials, gasPrice, gasLimit)
 
         thread {
-            // 값 읽기는 어떻게 읽는거냐
-            val temp = contract.retrieve().sendAsync()
-            val temp1 = temp.get()
+            // 값 읽기는 어떻게 읽는거냐-
+            val temp = contract.getValue().sendAsync()
+            val value = temp.get()
             Log.d(LoginVM.TAG, "recv result ${temp}")
 
             // TODO: 값 쓰기는 되는데
-            val data = contract.store(value.value?.let { BigInteger.valueOf(it.toLong()) }).sendAsync()
-            Log.d(LoginVM.TAG, "send result ${data.get().blockNumber}, ${data.get().gasUsed}")
+//            val data = contract.store(value.value?.let { BigInteger.valueOf(it.toLong()) }).sendAsync()
+//            Log.d(LoginVM.TAG, "send result ${data.get().blockNumber}, ${data.get().gasUsed}")
         }
 //        Log.d(LoginVM.TAG, " ${contract.isValid}")
         println("")

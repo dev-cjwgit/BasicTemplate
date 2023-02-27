@@ -3,9 +3,13 @@ package com.ssafy.basictemplate.blockchain;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Map;
+
 import org.web3j.abi.TypeReference;
 import org.web3j.abi.datatypes.Function;
 import org.web3j.abi.datatypes.Type;
+import org.web3j.abi.datatypes.Utf8String;
+import org.web3j.abi.datatypes.generated.Uint256;
 import org.web3j.crypto.Credentials;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.RemoteCall;
@@ -54,6 +58,20 @@ public class Contract_sol_Storage extends Contract {
                 Arrays.<Type>asList(),
                 Collections.<TypeReference<?>>emptyList());
         return executeRemoteCallTransaction(function);
+    }
+
+    public RemoteCall<?> getValue(){
+//        final Function function = new Function(
+//                FUNC_RETRIEVE,
+//                Arrays.<Type>asList(),
+//                Collections.<TypeReference<?>>emptyList());
+
+        final Function function = new Function(FUNC_RETRIEVE,
+                Collections.emptyList(),
+                Collections.singletonList(new TypeReference<Uint256>() {
+                }));
+        return executeRemoteCallSingleValueReturn(function, BigInteger.class);
+
     }
 
     public RemoteCall<TransactionReceipt> store(BigInteger num) {
