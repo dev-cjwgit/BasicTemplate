@@ -22,7 +22,7 @@ import org.web3j.tx.gas.ContractGasProvider;
  * <p>Auto generated code.
  * <p><strong>Do not modify!</strong>
  * <p>Please use the <a href="https://docs.web3j.io/command_line.html">web3j command line tools</a>,
- * or the org.web3j.codegen.SolidityFunctionWrapperGenerator in the 
+ * or the org.web3j.codegen.SolidityFunctionWrapperGenerator in the
  * <a href="https://github.com/web3j/web3j/tree/master/codegen">codegen module</a> to update.
  *
  * <p>Generated with web3j version 4.1.1.
@@ -52,26 +52,12 @@ public class Contract_sol_Storage extends Contract {
         super(BINARY, contractAddress, web3j, transactionManager, contractGasProvider);
     }
 
-    public RemoteCall<TransactionReceipt> retrieve() {
-        final Function function = new Function(
-                FUNC_RETRIEVE,
-                Arrays.<Type>asList(),
-                Collections.<TypeReference<?>>emptyList());
-        return executeRemoteCallTransaction(function);
-    }
-
-    public RemoteCall<?> getValue(){
-//        final Function function = new Function(
-//                FUNC_RETRIEVE,
-//                Arrays.<Type>asList(),
-//                Collections.<TypeReference<?>>emptyList());
-
+    public RemoteCall<?> retrieve() {
         final Function function = new Function(FUNC_RETRIEVE,
                 Collections.emptyList(),
                 Collections.singletonList(new TypeReference<Uint256>() {
                 }));
         return executeRemoteCallSingleValueReturn(function, BigInteger.class);
-
     }
 
     public RemoteCall<TransactionReceipt> store(BigInteger num) {
