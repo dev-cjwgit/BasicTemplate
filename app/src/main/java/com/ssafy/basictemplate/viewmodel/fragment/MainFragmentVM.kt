@@ -17,6 +17,8 @@ import kotlin.math.log
 class MainFragmentVM : ViewModel() {
     val message = MutableLiveData<String>("메인 프래그먼트입니다!")
 
+    val value = MutableLiveData<String>("0")
+
     fun test_onClick() {
         Log.d(
             LoginVM.TAG,
@@ -32,7 +34,7 @@ class MainFragmentVM : ViewModel() {
             "데이터 " + web3ClientVersion.web3ClientVersion
         )
         // contract address
-        val contractAddress = "0x5b1869D9A4C187F2EAa108f3062412ecf0526b24"
+        val contractAddress = "0xe982E462b094850F12AF94d21D470e21bE9D0E9C"
         // gas limit
         val gasLimit: BigInteger = BigInteger.valueOf(3000000)
         // gas price
@@ -51,7 +53,7 @@ class MainFragmentVM : ViewModel() {
             Log.d(LoginVM.TAG, "recv result ${temp}")
 
             // TODO: 값 쓰기는 되는데
-            val data = contract.store(BigInteger.valueOf(50000)).sendAsync()
+            val data = contract.store(value.value?.let { BigInteger.valueOf(it.toLong()) }).sendAsync()
             Log.d(LoginVM.TAG, "send result ${data.get().blockNumber}, ${data.get().gasUsed}")
         }
 //        Log.d(LoginVM.TAG, " ${contract.isValid}")
