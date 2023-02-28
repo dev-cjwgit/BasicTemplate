@@ -9,6 +9,11 @@ android {
     namespace 'com.ssafy.basictemplate'
     compileSdk 33
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     defaultConfig {
         applicationId "com.ssafy.basictemplate"
         minSdk 26
@@ -56,8 +61,16 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 
-    // web3 for android
-    implementation 'org.web3j:core:4.2.0-android'
+    // web3 for android (Smart Contract)
+    implementation group: 'org.web3j', name: 'core', version: '4.8.8-android'
+    // https://mvnrepository.com/artifact/org.web3j/infura
+    implementation group: 'org.web3j', name: 'infura', version: '4.2.1-android'
+
+
+    // java 8 TODO: 집에서는 이거 없어도 잘 되는데...
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0'
+
+
 
     // default
     implementation 'androidx.core:core-ktx:1.7.0'

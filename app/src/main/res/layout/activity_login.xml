@@ -17,7 +17,7 @@
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="300dp"
+            android:layout_width="350dp"
             android:layout_height="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,12 +44,13 @@
 
             <Button
                 android:id="@+id/loginButton"
-                android:layout_width="100dp"
+                android:layout_width="80dp"
                 android:layout_height="75dp"
                 android:onClick="@{() -> viewModel.loginButton_onClick()}"
-                app:layout_constraintBottom_toTopOf="@+id/pwEditText"
+                android:text="Login"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/idEditText" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
