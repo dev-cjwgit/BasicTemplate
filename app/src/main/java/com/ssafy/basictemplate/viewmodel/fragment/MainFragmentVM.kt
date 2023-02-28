@@ -8,6 +8,7 @@ import com.ssafy.basictemplate.viewmodel.activity.LoginVM
 import org.web3j.crypto.Credentials
 import org.web3j.protocol.Web3j
 import org.web3j.protocol.http.HttpService
+import org.web3j.protocol.infura.InfuraHttpService
 import java.math.BigInteger
 import kotlin.concurrent.thread
 
@@ -25,8 +26,9 @@ class MainFragmentVM : ViewModel() {
 
 //        val web3 =
 //            Web3j.build(HttpService("http://183.97.128.216:7545/")) // defaults to http://localhost:8545/
-
-        val web3 = Web3j.build(HttpService("https://mainnet.infura.io/v3/2849717dc6944af6a40ccf1540bdcb91"))
+        // 2849717dc6944af6a40ccf1540bdcb91
+        val web3 = Web3j.build(InfuraHttpService("https://sepolia.infura.io/v3/2849717dc6944af6a40ccf1540bdcb91"))
+//        val web3 = Web3jFactory.build()
         val web3ClientVersion = web3.web3ClientVersion().sendAsync().get()
         Log.d(
             LoginVM.TAG,
@@ -35,9 +37,9 @@ class MainFragmentVM : ViewModel() {
         // contract address
         val contractAddress = "0x8470FA00accd62c967b65C490913be1e7fbE421A"
         // gas limit
-        val gasLimit: BigInteger = BigInteger.valueOf(300000)
+        val gasLimit: BigInteger = BigInteger.valueOf(30000)
         // gas price
-        val gasPrice: BigInteger = BigInteger.valueOf(30)
+        val gasPrice: BigInteger = BigInteger.valueOf(400)
         // create credentials w/ your private key
         val credentials =
             Credentials.create("cbbfa9f3fac6ffcbd8ab8431e645c737c3a796b1eebce200499c180615e39787")
@@ -53,7 +55,7 @@ class MainFragmentVM : ViewModel() {
 
             val data =
                 contract.store(numberValue.value?.let { BigInteger.valueOf(it.toLong()) }).sendAsync()
-//            Log.d(LoginVM.TAG, "send result ${data.get().blockNumber}, ${data.get().gasUsed}")
+            Log.d(LoginVM.TAG, "send result ${data.get().blockNumber}, ${data.get().gasUsed}")
             numberValue.postValue("0")
         }
     }
@@ -64,8 +66,8 @@ class MainFragmentVM : ViewModel() {
             "MainFragment - MainFragmentVM - 버튼 클릭"
         )
 
-        val web3 =
-            Web3j.build(HttpService("http://183.97.128.216:7545/")) // defaults to http://localhost:8545/
+//        val web3 = Web3j.build(HttpService("http://183.97.128.216:7545/")) // defaults to http://localhost:8545/
+        val web3 = Web3j.build(InfuraHttpService("https://sepolia.infura.io/v3/2849717dc6944af6a40ccf1540bdcb91"))
 
         val web3ClientVersion = web3.web3ClientVersion().sendAsync().get()
         Log.d(
