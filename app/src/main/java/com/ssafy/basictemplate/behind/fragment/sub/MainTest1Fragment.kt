@@ -1,14 +1,10 @@
 package com.ssafy.basictemplate.behind.fragment.sub
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.view.*
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
-import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.ssafy.basictemplate.databinding.FragmentMainTest1Binding
@@ -35,7 +31,22 @@ class MainTest1Fragment : Fragment() {
             binding.lifecycleOwner = this
         }
         initObserve()
-        setHasOptionsMenu(true)
+        requireActivity().addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                return super.onPrepareMenu(menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                // Action Bar의 뒤로가기 버튼
+                return when (menuItem.itemId) {
+                    android.R.id.home -> {
+                        navController.popBackStack()
+                        true
+                    }
+                    else -> false
+                }
+            }
+        })
         val root: View = binding.root
 
 
@@ -53,17 +64,6 @@ class MainTest1Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(requireView())
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Action Bar의 뒤로가기 버튼
-        return when (item.itemId) {
-            android.R.id.home -> {
-                navController.popBackStack()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
     override fun onDestroyView() {
