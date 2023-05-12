@@ -4,36 +4,46 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.ssafy.basictemplate.util.ActivityCode
-import com.ssafy.basictemplate.util.Event
-import java.util.*
+import com.ssafy.basictemplate.behind.activity.MainActivity
 
 class LoginVM : ViewModel() {
-    /*
-        MutableLiveData = get; set
-               LiveData = get;
-     */
-
-    private val _openEvent = MutableLiveData<Event<ActivityCode>>()
-    val openEvent: LiveData<Event<ActivityCode>> get() = _openEvent
-
     companion object {
-        const val TAG: String = "로그"
+        val TAG: String? = this::class.qualifiedName
     }
 
+    // region Member Variable
+    // REMOVE : 클래스 내부에서 필요한 멤버 변수를 정하는 곳
+    private val _activityEvent = MutableLiveData<Class<*>>()
+    val activityEvent: LiveData<Class<*>> get() = _activityEvent
+
+    // endregion
+
+    /**********************************************************************************************/
+
+    // region VM Property
     val id = MutableLiveData<String>()
-//    val id: LiveData<String> get() = _id
-
     val pw = MutableLiveData<String>()
-//    val pw: LiveData<String> get() = _pw
+    // endregion
 
+    /**********************************************************************************************/
 
-    fun loginButton_onClick() {
-        Log.d(
-            TAG,
-            "LoginActivity - loginVM - 버튼 클릭 ${id.value} , ${pw.value}"
-        )
-        _openEvent.value = Event(ActivityCode.MAIN_ACTIVITY)
+    // region Button Handler
+    fun loginButtonOnClick() {
+        Log.d(TAG, "로그인")
+        _activityEvent.value = MainActivity::class.java
     }
+    // endregion
 
+    /**********************************************************************************************/
+
+    // region Design Property
+    // REMOVE : 바인딩 할 디자인 멤버 변수를 정하는 곳
+    // (ex : background, color 등)
+    // endregion
+
+    /**********************************************************************************************/
+
+    // region Util
+    // REMOVE : 기타 유틸 함수 등을 정하는 곳
+    // endregion
 }

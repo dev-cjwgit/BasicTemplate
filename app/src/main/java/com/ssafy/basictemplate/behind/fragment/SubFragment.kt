@@ -24,7 +24,7 @@ class SubFragment : Fragment() {
     ): View {
         _binding = FragmentSubBinding.inflate(inflater, container, false)
         activity?.let {
-            viewModel = ViewModelProvider(it).get(SubFragmentVM::class.java)
+            viewModel = ViewModelProvider(it)[SubFragmentVM::class.java]
             binding.viewModel = viewModel
             binding.lifecycleOwner = this
         }
