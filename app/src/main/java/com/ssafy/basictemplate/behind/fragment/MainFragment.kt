@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.ssafy.basictemplate.R
 import com.ssafy.basictemplate.databinding.FragmentMainBinding
 import com.ssafy.basictemplate.viewmodel.fragment.MainFragmentVM
 
@@ -33,26 +32,7 @@ class MainFragment : Fragment() {
         }
         initObserve()
 
-        requireActivity().addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                return super.onPrepareMenu(menu)
-            }
-
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                // Action Bar의 뒤로가기 버튼
-                return when (menuItem.itemId) {
-                    android.R.id.home -> {
-                        navController.popBackStack()
-                        true
-                    }
-                    else -> false
-                }
-            }
-        })
-        val root: View = binding.root
-
-
-        return root
+        return binding.root
     }
 
     private fun initObserve() {

@@ -47,10 +47,8 @@ class MainTest2Fragment : Fragment() {
                 }
             }
         })
-        val root: View = binding.root
 
-
-        return root
+        return binding.root
     }
 
     private fun initObserve() {
