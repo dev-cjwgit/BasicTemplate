@@ -28,6 +28,10 @@ class MainTest2FragmentVM() : ViewModel() {
 
     // region Button Handler
     // REMOVE : 버튼 이벤트 관련 정하는 곳
+    fun prevButtonOnClick() {
+        // TODO: 사용은 되지만 Fragment Stack 관리 면에서 너무 안좋음
+        _fragmentEvent.postValue(Event(R.id.navigation_main_test_1))
+    }
 
     fun nextButtonOnClick() {
 
