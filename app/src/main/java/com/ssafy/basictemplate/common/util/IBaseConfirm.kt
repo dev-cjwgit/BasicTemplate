@@ -1,9 +1,12 @@
 package com.ssafy.basictemplate.common.util
 
-import com.google.gson.JsonObject
-
-interface IBaseConfirm {
+interface IBaseConfirm<T> {
     fun success()
 
     fun fail()
+
+    fun getType(): String
+
+    fun getParams(): T
+
 }

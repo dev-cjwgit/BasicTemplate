@@ -1,7 +1,6 @@
 package com.ssafy.basictemplate.behind.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -10,9 +9,10 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.JsonObject
 import com.ssafy.basictemplate.behind.dialog.ConfirmDialog
-import com.ssafy.basictemplate.common.dialog.BaseDialog
+import com.ssafy.basictemplate.behind.dialog.TestDetailDialog
 import com.ssafy.basictemplate.common.dialog.IBaseDialog
 import com.ssafy.basictemplate.databinding.FragmentMainBinding
+import com.ssafy.basictemplate.model.domain.template.TestDTO
 import com.ssafy.basictemplate.viewmodel.fragment.MainFragmentVM
 
 class MainFragment : Fragment() {
@@ -70,19 +70,44 @@ class MainFragment : Fragment() {
 
         viewModel.dialogEvent.observe(requireActivity()) { it ->
             it.getContentIfNotHandled()?.let {
-                val dialog = ConfirmDialog(requireContext(), object : IBaseDialog {
-                    override fun confirm(jsonObject: JsonObject?) {
-                        // 확인 버튼이 눌렸을 때 동작을 정의하는 람다식
-                        // 전달된 JsonObject를 사용하여 원하는 작업을 수행합니다.
-                        it.success()
+                when (it.getType()) {
+                    "ConfirmDialog" -> {
+                        val dialog = ConfirmDialog(requireContext(), object : IBaseDialog {
+                            override fun confirm(jsonObject: JsonObject?) {
+                                // 확인 버튼이 눌렸을 때 동작을 정의하는 람다식
+                                // 전달된 JsonObject를 사용하여 원하는 작업을 수행합니다.
+                                if (jsonObject?.get("result")?.asBoolean == true) {
+                                    it.success()
+                                }
+                            }
+
+                            override fun cancel() {
+                                it.fail()
+                            }
+                        })
+                        dialog.show()
                     }
 
-                    override fun cancel() {
-                        it.fail()
-                    }
-                })
+                    "TestDetailDialog" -> {
+                        val dialog = TestDetailDialog(
+                            it.getParams() as TestDTO,
+                            requireContext(),
+                            object : IBaseDialog {
+                                override fun confirm(jsonObject: JsonObject?) {
+                                    // 확인 버튼이 눌렸을 때 동작을 정의하는 람다식
+                                    // 전달된 JsonObject를 사용하여 원하는 작업을 수행합니다.
+                                    if (jsonObject?.get("result")?.asBoolean == true) {
+                                        it.success()
+                                    }
+                                }
 
-                dialog.show()
+                                override fun cancel() {
+                                    it.fail()
+                                }
+                            })
+                        dialog.show()
+                    }
+                }
             }
         }
     }

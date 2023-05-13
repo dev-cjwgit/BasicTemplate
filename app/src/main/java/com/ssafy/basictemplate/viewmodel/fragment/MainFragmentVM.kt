@@ -4,14 +4,12 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.gson.JsonObject
 import com.ssafy.basictemplate.R
-import com.ssafy.basictemplate.behind.fragment.MainFragment
-import com.ssafy.basictemplate.common.dialog.IBaseDialog
 import com.ssafy.basictemplate.common.recyclerview.IRecyclerViewCD
 import com.ssafy.basictemplate.common.util.Event
 import com.ssafy.basictemplate.common.util.IBaseConfirm
 import com.ssafy.basictemplate.common.util.ImageLoader
+import com.ssafy.basictemplate.model.domain.Empty
 import com.ssafy.basictemplate.model.domain.template.TestDTO
 import com.ssafy.basictemplate.model.service.TestRetrofitService
 import com.ssafy.basictemplate.viewmodel.adapter.TestRecyclerViewAdapter
@@ -28,16 +26,35 @@ class MainFragmentVM() : ViewModel(), IRecyclerViewCD<TestDTO> {
     private val _fragmentEvent = MutableLiveData<Event<Int>>()
     val fragmentEvent: LiveData<Event<Int>> get() = _fragmentEvent
 
-    private val _dialogEvent = MutableLiveData<Event<IBaseConfirm>>()
-    val dialogEvent: LiveData<Event<IBaseConfirm>> get() = _dialogEvent
+    private val _dialogEvent = MutableLiveData<Event<IBaseConfirm<*>>>()
+    val dialogEvent: LiveData<Event<IBaseConfirm<*>>> get() = _dialogEvent
 
     private val adapter: TestRecyclerViewAdapter
     // endregion
 
     init {
-        adapter = TestRecyclerViewAdapter {
+        adapter = TestRecyclerViewAdapter({
+            _dialogEvent.postValue(
+                Event(object : IBaseConfirm<TestDTO> {
+                    override fun success() {
+                    }
+
+                    override fun fail() {
+
+                    }
+
+                    override fun getType(): String {
+                        return "TestDetailDialog"
+                    }
+
+                    override fun getParams(): TestDTO {
+                        return it
+                    }
+                })
+            )
+        }, {
             remove(it);
-        }
+        })
     }
     /**********************************************************************************************/
 
@@ -51,8 +68,8 @@ class MainFragmentVM() : ViewModel(), IRecyclerViewCD<TestDTO> {
     // REMOVE : 버튼 이벤트 관련 정하는 곳
     private var index: Int = 0
     fun nextButtonOnClick() {
-        _dialogEvent.value = Event(
-            object : IBaseConfirm {
+        _dialogEvent.postValue(
+            Event(object : IBaseConfirm<Empty> {
                 override fun success() {
                     _fragmentEvent.postValue(Event(R.id.navigation_main_test_1))
                 }
@@ -60,7 +77,15 @@ class MainFragmentVM() : ViewModel(), IRecyclerViewCD<TestDTO> {
                 override fun fail() {
 
                 }
-            }
+
+                override fun getType(): String {
+                    return "ConfirmDialog"
+                }
+
+                override fun getParams(): Empty {
+                    TODO("Not yet implemented")
+                }
+            })
         )
     }
 

@@ -8,7 +8,8 @@ import com.ssafy.basictemplate.databinding.TemplateRecyclerviewTestBinding
 import com.ssafy.basictemplate.model.domain.template.TestDTO
 
 class TestRecyclerViewAdapter(
-    private val onClickDeleteButton: (pos: TestDTO) -> Unit
+    private val onClickItem: (item: TestDTO) -> Unit,
+    private val onClickDeleteButton: (item: TestDTO) -> Unit
 ) :
     BaseRecyclerViewAdapter<TemplateRecyclerviewTestBinding, TestDTO>(mutableListOf()) {
 
@@ -19,8 +20,13 @@ class TestRecyclerViewAdapter(
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.template_recyclerview_test, viewGroup, false) //내가 각아이템에 사용하는 view
         val bind = TemplateRecyclerviewTestBinding.bind(view)
+        val holder = BaseRecyclerViewHolder(bind)
 
-        return BaseRecyclerViewHolder(bind)
+        view.setOnClickListener {
+            onClickItem.invoke(items[holder.adapterPosition]);
+        }
+
+        return holder
     }
 
 
@@ -32,6 +38,7 @@ class TestRecyclerViewAdapter(
             val listposition = items[position]
             // 데이터 주입
             holder.binding.item = listposition
+
 
             // 버튼 리스너 설정
             holder.binding.removeButton.setOnClickListener {

@@ -5,25 +5,31 @@ import android.content.Context
 import android.os.Bundle
 import com.google.gson.JsonObject
 import com.ssafy.basictemplate.common.dialog.IBaseDialog
-import com.ssafy.basictemplate.databinding.DialogConfirmBinding
+import com.ssafy.basictemplate.databinding.DialogTestDetailBinding
+import com.ssafy.basictemplate.model.domain.template.TestDTO
 
-class ConfirmDialog(
+class TestDetailDialog(
+    data: TestDTO,
     context: Context,
     dialogInterface: IBaseDialog,
 ) :
     Dialog(context) {
-    private var mBinding: DialogConfirmBinding? = null
+    private var mBinding: DialogTestDetailBinding? = null
     private val binding get() = mBinding!!
     private var dialogInterface: IBaseDialog? = null
+    private var data: TestDTO? = null;
 
     init {
         this.dialogInterface = dialogInterface
+        this.data = data
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding = DialogConfirmBinding.inflate(layoutInflater)
+        mBinding = DialogTestDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.item = data
 
         binding.confirmButton.setOnClickListener {
             dismiss()
