@@ -1,4 +1,4 @@
-package com.ssafy.basictemplate.util
+package com.ssafy.basictemplate.common.util
 
 
 

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ssafy.basictemplate.R
-import com.ssafy.basictemplate.util.Event
+import com.ssafy.basictemplate.common.util.Event
 
 
 class MainTest2FragmentVM() : ViewModel() {

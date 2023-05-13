@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModel
 import com.ssafy.basictemplate.R
 import com.ssafy.basictemplate.common.recyclerview.IRecyclerViewCD
 import com.ssafy.basictemplate.model.domain.TestDTO
-import com.ssafy.basictemplate.util.Event
+import com.ssafy.basictemplate.common.util.Event
 import com.ssafy.basictemplate.viewmodel.activity.LoginVM
 import com.ssafy.basictemplate.viewmodel.adapter.TestRecyclerViewAdapter
 
