@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="com.ssafy.basictemplate.model.domain.TestDTO" />
+            type="com.ssafy.basictemplate.model.domain.template.TestDTO" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

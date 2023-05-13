@@ -1,4 +1,4 @@
-package com.ssafy.basictemplate.model.domain
+package com.ssafy.basictemplate.model.domain.template
 
 import android.graphics.drawable.Drawable
 

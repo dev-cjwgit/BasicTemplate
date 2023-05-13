@@ -2,16 +2,12 @@ package com.ssafy.basictemplate.behind.fragment
 
 import android.os.Bundle
 import android.view.*
-import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ssafy.basictemplate.databinding.FragmentMainBinding
-import com.ssafy.basictemplate.model.domain.TestDTO
-import com.ssafy.basictemplate.viewmodel.adapter.TestRecyclerViewAdapter
 import com.ssafy.basictemplate.viewmodel.fragment.MainFragmentVM
 
 class MainFragment : Fragment() {

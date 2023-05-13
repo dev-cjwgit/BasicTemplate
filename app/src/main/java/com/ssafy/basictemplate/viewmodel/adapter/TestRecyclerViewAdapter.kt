@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import com.ssafy.basictemplate.R
 import com.ssafy.basictemplate.common.recyclerview.BaseRecyclerViewAdapter
 import com.ssafy.basictemplate.databinding.TemplateRecyclerviewTestBinding
-import com.ssafy.basictemplate.model.domain.TestDTO
+import com.ssafy.basictemplate.model.domain.template.TestDTO
 
 class TestRecyclerViewAdapter(
     private val onClickDeleteButton: (pos: TestDTO) -> Unit

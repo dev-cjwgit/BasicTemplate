@@ -1,17 +1,11 @@
 package com.ssafy.basictemplate.viewmodel.fragment
 
-import android.os.Parcel
-import android.os.Parcelable
-import android.util.Log
-import androidx.annotation.IdRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.ssafy.basictemplate.R
 import com.ssafy.basictemplate.common.recyclerview.IRecyclerViewCD
-import com.ssafy.basictemplate.model.domain.TestDTO
+import com.ssafy.basictemplate.model.domain.template.TestDTO
 import com.ssafy.basictemplate.common.util.Event
-import com.ssafy.basictemplate.viewmodel.activity.LoginVM
 import com.ssafy.basictemplate.viewmodel.adapter.TestRecyclerViewAdapter
 
 
