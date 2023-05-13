@@ -1,5 +1,6 @@
 package com.ssafy.basictemplate.viewmodel.fragment
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,6 +8,8 @@ import com.ssafy.basictemplate.R
 import com.ssafy.basictemplate.common.recyclerview.IRecyclerViewCD
 import com.ssafy.basictemplate.model.domain.template.TestDTO
 import com.ssafy.basictemplate.common.util.Event
+import com.ssafy.basictemplate.common.util.ImageLoader
+import com.ssafy.basictemplate.model.service.TestRetrofitService
 import com.ssafy.basictemplate.viewmodel.adapter.TestRecyclerViewAdapter
 
 
@@ -45,8 +48,27 @@ class MainFragmentVM() : ViewModel(), IRecyclerViewCD<TestDTO> {
     }
 
     fun addButtonOnClick() {
-        add(TestDTO(null, "제목 ${index}", index, "주소 ${index}", "취미 ${index}", "기타 ${index}"))
-        index++;
+        TestRetrofitService().getRandomUrlToCatPicture(
+            onSuccess = { url ->
+                ImageLoader.loadDrawableFromUrl(url) { drawable ->
+                    add(
+                        TestDTO(
+                            drawable,
+                            "제목 $index",
+                            index,
+                            "주소 $index",
+                            "취미 $index",
+                            "기타 $index"
+                        )
+                    )
+                    index++
+                }
+            },
+            onFailure = { err ->
+                Log.e(TAG, err.message.toString())
+            }
+        )
+
     }
     // endregion
 

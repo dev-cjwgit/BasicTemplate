@@ -11,13 +11,18 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="100dp"
+        android:layout_margin="8dp">
 
+        <!-- scaleType : 이미지 중앙 정렬 -->
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:scaleType="center"
             android:src="@{item.iconImage}"
+
+            android:padding="4dp"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

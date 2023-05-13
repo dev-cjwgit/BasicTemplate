@@ -17,6 +17,10 @@ import com.ssafy.basictemplate.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        val TAG: String? = this::class.qualifiedName
+    }
+
     private lateinit var navController: NavController
     private var toast: Toast? = null
     private var backKeyPressedTime: Long = 0
