@@ -1,4 +1,4 @@
-package com.ssafy.basictemplate.behind.fragment.sub
+package com.ssafy.basictemplate.behind.fragment.main
 
 import android.os.Bundle
 import android.view.*
@@ -7,12 +7,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.ssafy.basictemplate.databinding.FragmentMainTest1Binding
-import com.ssafy.basictemplate.viewmodel.fragment.sub.MainTest1FragmentVM
+import com.ssafy.basictemplate.databinding.FragmentMainTest2Binding
+import com.ssafy.basictemplate.viewmodel.fragment.main.MainTest2FragmentVM
 
-class MainTest1Fragment : Fragment() {
-    private var _binding: FragmentMainTest1Binding? = null
-    private lateinit var viewModel: MainTest1FragmentVM
+class MainTest2Fragment : Fragment() {
+    private var _binding: FragmentMainTest2Binding? = null
+    private lateinit var viewModel: MainTest2FragmentVM
     private lateinit var navController: NavController
 
     // This property is only valid between onCreateView and
@@ -24,9 +24,9 @@ class MainTest1Fragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMainTest1Binding.inflate(inflater, container, false)
+        _binding = FragmentMainTest2Binding.inflate(inflater, container, false)
         activity?.let {
-            viewModel = ViewModelProvider(it)[MainTest1FragmentVM::class.java]
+            viewModel = ViewModelProvider(it)[MainTest2FragmentVM::class.java]
             binding.viewModel = viewModel
             binding.lifecycleOwner = this
         }

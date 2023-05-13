@@ -1,4 +1,4 @@
-package com.ssafy.basictemplate.viewmodel.fragment.sub
+package com.ssafy.basictemplate.viewmodel.fragment.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,7 +7,7 @@ import com.ssafy.basictemplate.R
 import com.ssafy.basictemplate.util.Event
 
 
-class MainTest2FragmentVM() : ViewModel() {
+class MainTest1FragmentVM() : ViewModel() {
     companion object {
         val TAG: String? = this::class.qualifiedName
     }
@@ -16,6 +16,7 @@ class MainTest2FragmentVM() : ViewModel() {
     // REMOVE : 클래스 내부에서 필요한 멤버 변수를 정하는 곳
     private val _fragmentEvent = MutableLiveData<Event<Int>>()
     val fragmentEvent: LiveData<Event<Int>> get() = _fragmentEvent
+
     // endregion
 
     /**********************************************************************************************/
@@ -28,12 +29,10 @@ class MainTest2FragmentVM() : ViewModel() {
 
     // region Button Handler
     // REMOVE : 버튼 이벤트 관련 정하는 곳
-    fun prevButtonOnClick() {
-        // TODO: 사용은 되지만 Fragment Stack 관리 면에서 너무 안좋음
-        _fragmentEvent.postValue(Event(R.id.navigation_main_test_1))
-    }
+
 
     fun nextButtonOnClick() {
+        _fragmentEvent.postValue(Event(R.id.navigation_main_test_2))
 
     }
     // endregion

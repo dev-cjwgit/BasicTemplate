@@ -12,13 +12,13 @@
 
     <fragment
         android:id="@+id/navigation_main_test_1"
-        android:name="com.ssafy.basictemplate.behind.fragment.sub.MainTest1Fragment"
+        android:name="com.ssafy.basictemplate.behind.fragment.main.MainTest1Fragment"
         android:label="MainTest1Fragment"
         tools:layout="@layout/fragment_main_test1"/>
 
     <fragment
         android:id="@+id/navigation_main_test_2"
-        android:name="com.ssafy.basictemplate.behind.fragment.sub.MainTest2Fragment"
+        android:name="com.ssafy.basictemplate.behind.fragment.main.MainTest2Fragment"
         android:label="MainTest2Fragment"
         tools:layout="@layout/fragment_main_test2"/>
 
