@@ -3,6 +3,7 @@ package com.ssafy.basictemplate.viewmodel.fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.ssafy.basictemplate.R
 import com.ssafy.basictemplate.common.recyclerview.IRecyclerViewCD
 import com.ssafy.basictemplate.model.domain.template.TestDTO
 import com.ssafy.basictemplate.common.util.Event
@@ -40,7 +41,10 @@ class MainFragmentVM() : ViewModel(), IRecyclerViewCD<TestDTO> {
     // REMOVE : 버튼 이벤트 관련 정하는 곳
     private var index: Int = 0
     fun nextButtonOnClick() {
-//        _fragmentEvent.postValue(Event(R.id.navigation_main_test_1))
+        _fragmentEvent.postValue(Event(R.id.navigation_main_test_1))
+    }
+
+    fun addButtonOnClick() {
         add(TestDTO(null, "제목 ${index}", index, "주소 ${index}", "취미 ${index}", "기타 ${index}"))
         index++;
     }
