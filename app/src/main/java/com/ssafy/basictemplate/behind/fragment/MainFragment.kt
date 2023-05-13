@@ -1,16 +1,25 @@
 package com.ssafy.basictemplate.behind.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.JsonObject
+import com.ssafy.basictemplate.behind.dialog.ConfirmDialog
+import com.ssafy.basictemplate.common.dialog.BaseDialog
+import com.ssafy.basictemplate.common.dialog.IBaseDialog
 import com.ssafy.basictemplate.databinding.FragmentMainBinding
 import com.ssafy.basictemplate.viewmodel.fragment.MainFragmentVM
 
 class MainFragment : Fragment() {
+    companion object {
+        val TAG: String? = this::class.qualifiedName
+    }
+
     private var _binding: FragmentMainBinding? = null
     private lateinit var viewModel: MainFragmentVM
     private lateinit var navController: NavController
@@ -56,6 +65,24 @@ class MainFragment : Fragment() {
         viewModel.fragmentEvent.observe(requireActivity()) {
             it.getContentIfNotHandled()?.let {
                 navController.navigate(it);
+            }
+        }
+
+        viewModel.dialogEvent.observe(requireActivity()) { it ->
+            it.getContentIfNotHandled()?.let {
+                val dialog = ConfirmDialog(requireContext(), object : IBaseDialog {
+                    override fun confirm(jsonObject: JsonObject?) {
+                        // 확인 버튼이 눌렸을 때 동작을 정의하는 람다식
+                        // 전달된 JsonObject를 사용하여 원하는 작업을 수행합니다.
+                        it.success()
+                    }
+
+                    override fun cancel() {
+                        it.fail()
+                    }
+                })
+
+                dialog.show()
             }
         }
     }

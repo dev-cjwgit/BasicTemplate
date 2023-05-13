@@ -34,7 +34,7 @@ class TestRecyclerViewAdapter(
             holder.binding.item = listposition
 
             // 버튼 리스너 설정
-            holder.binding.removeButton.setOnClickListener() {
+            holder.binding.removeButton.setOnClickListener {
                 if (holder.adapterPosition != -1) {
                     onClickDeleteButton.invoke(items[holder.adapterPosition])
                 }

@@ -4,11 +4,15 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.gson.JsonObject
 import com.ssafy.basictemplate.R
+import com.ssafy.basictemplate.behind.fragment.MainFragment
+import com.ssafy.basictemplate.common.dialog.IBaseDialog
 import com.ssafy.basictemplate.common.recyclerview.IRecyclerViewCD
-import com.ssafy.basictemplate.model.domain.template.TestDTO
 import com.ssafy.basictemplate.common.util.Event
+import com.ssafy.basictemplate.common.util.IBaseConfirm
 import com.ssafy.basictemplate.common.util.ImageLoader
+import com.ssafy.basictemplate.model.domain.template.TestDTO
 import com.ssafy.basictemplate.model.service.TestRetrofitService
 import com.ssafy.basictemplate.viewmodel.adapter.TestRecyclerViewAdapter
 
@@ -23,6 +27,9 @@ class MainFragmentVM() : ViewModel(), IRecyclerViewCD<TestDTO> {
 
     private val _fragmentEvent = MutableLiveData<Event<Int>>()
     val fragmentEvent: LiveData<Event<Int>> get() = _fragmentEvent
+
+    private val _dialogEvent = MutableLiveData<Event<IBaseConfirm>>()
+    val dialogEvent: LiveData<Event<IBaseConfirm>> get() = _dialogEvent
 
     private val adapter: TestRecyclerViewAdapter
     // endregion
@@ -44,7 +51,17 @@ class MainFragmentVM() : ViewModel(), IRecyclerViewCD<TestDTO> {
     // REMOVE : 버튼 이벤트 관련 정하는 곳
     private var index: Int = 0
     fun nextButtonOnClick() {
-        _fragmentEvent.postValue(Event(R.id.navigation_main_test_1))
+        _dialogEvent.value = Event(
+            object : IBaseConfirm {
+                override fun success() {
+                    _fragmentEvent.postValue(Event(R.id.navigation_main_test_1))
+                }
+
+                override fun fail() {
+
+                }
+            }
+        )
     }
 
     fun addButtonOnClick() {
@@ -110,4 +127,5 @@ class MainFragmentVM() : ViewModel(), IRecyclerViewCD<TestDTO> {
     override fun add(data: TestDTO) {
         adapter.add(data)
     }
+
 }
