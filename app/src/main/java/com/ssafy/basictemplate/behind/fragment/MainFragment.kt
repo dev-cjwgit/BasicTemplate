@@ -11,6 +11,7 @@ import com.google.gson.JsonObject
 import com.ssafy.basictemplate.behind.dialog.ConfirmDialog
 import com.ssafy.basictemplate.behind.dialog.TestDetailDialog
 import com.ssafy.basictemplate.common.dialog.IBaseDialog
+import com.ssafy.basictemplate.common.util.DialogType
 import com.ssafy.basictemplate.databinding.FragmentMainBinding
 import com.ssafy.basictemplate.model.domain.template.TestDTO
 import com.ssafy.basictemplate.viewmodel.fragment.MainFragmentVM
@@ -71,7 +72,7 @@ class MainFragment : Fragment() {
         viewModel.dialogEvent.observe(requireActivity()) { it ->
             it.getContentIfNotHandled()?.let {
                 when (it.getType()) {
-                    "ConfirmDialog" -> {
+                    DialogType.CONFIRM_DIALOG -> {
                         val dialog = ConfirmDialog(requireContext(), object : IBaseDialog {
                             override fun confirm(jsonObject: JsonObject?) {
                                 // 확인 버튼이 눌렸을 때 동작을 정의하는 람다식
@@ -88,7 +89,7 @@ class MainFragment : Fragment() {
                         dialog.show()
                     }
 
-                    "TestDetailDialog" -> {
+                    DialogType.TEST_DETAIL_DIALOG -> {
                         val dialog = TestDetailDialog(
                             it.getParams() as TestDTO,
                             requireContext(),

@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ssafy.basictemplate.R
 import com.ssafy.basictemplate.common.recyclerview.IRecyclerViewCD
+import com.ssafy.basictemplate.common.util.DialogType
 import com.ssafy.basictemplate.common.util.Event
 import com.ssafy.basictemplate.common.util.IBaseConfirm
 import com.ssafy.basictemplate.common.util.ImageLoader
@@ -43,8 +44,8 @@ class MainFragmentVM() : ViewModel(), IRecyclerViewCD<TestDTO> {
 
                     }
 
-                    override fun getType(): String {
-                        return "TestDetailDialog"
+                    override fun getType(): DialogType {
+                        return DialogType.TEST_DETAIL_DIALOG
                     }
 
                     override fun getParams(): TestDTO {
@@ -78,8 +79,8 @@ class MainFragmentVM() : ViewModel(), IRecyclerViewCD<TestDTO> {
 
                 }
 
-                override fun getType(): String {
-                    return "ConfirmDialog"
+                override fun getType(): DialogType {
+                    return DialogType.CONFIRM_DIALOG
                 }
 
                 override fun getParams(): Empty {

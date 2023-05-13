@@ -5,7 +5,7 @@ interface IBaseConfirm<T> {
 
     fun fail()
 
-    fun getType(): String
+    fun getType(): DialogType
 
     fun getParams(): T
 
