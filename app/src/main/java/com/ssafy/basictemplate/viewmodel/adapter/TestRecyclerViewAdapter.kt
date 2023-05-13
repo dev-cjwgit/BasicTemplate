@@ -9,7 +9,7 @@ import com.ssafy.basictemplate.model.domain.template.TestDTO
 
 class TestRecyclerViewAdapter(
     private val onClickItem: (item: TestDTO) -> Unit,
-    private val onClickDeleteButton: (item: TestDTO) -> Unit
+    private val onClickDeleteButton: (pos: Int) -> Unit
 ) :
     BaseRecyclerViewAdapter<TemplateRecyclerviewTestBinding, TestDTO>(mutableListOf()) {
 
@@ -43,7 +43,7 @@ class TestRecyclerViewAdapter(
             // 버튼 리스너 설정
             holder.binding.removeButton.setOnClickListener {
                 if (holder.adapterPosition != -1) {
-                    onClickDeleteButton.invoke(items[holder.adapterPosition])
+                    onClickDeleteButton.invoke(holder.adapterPosition)
                 }
             }
 
