@@ -4,10 +4,14 @@ import android.os.Bundle
 import android.view.*
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ssafy.basictemplate.databinding.FragmentMainBinding
+import com.ssafy.basictemplate.model.domain.TestDTO
+import com.ssafy.basictemplate.viewmodel.adapter.TestRecyclerViewAdapter
 import com.ssafy.basictemplate.viewmodel.fragment.MainFragmentVM
 
 class MainFragment : Fragment() {
@@ -29,18 +33,16 @@ class MainFragment : Fragment() {
             viewModel = ViewModelProvider(it)[MainFragmentVM::class.java]
             binding.viewModel = viewModel
             binding.lifecycleOwner = this
+            binding.adapter = viewModel.getAdapter()
         }
+
+        val recyclerView = binding.recycler
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.setHasFixedSize(true)
+
         initObserve()
 
         return binding.root
-    }
-
-    private fun initObserve() {
-        viewModel.fragmentEvent.observe(requireActivity()) {
-            it.getContentIfNotHandled()?.let {
-                navController.navigate(it);
-            }
-        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,4 +54,15 @@ class MainFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    // region funcs
+    private fun initObserve() {
+        viewModel.fragmentEvent.observe(requireActivity()) {
+            it.getContentIfNotHandled()?.let {
+                navController.navigate(it);
+            }
+        }
+    }
+
+    // endregion
 }

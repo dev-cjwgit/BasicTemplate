@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.ssafy.basictemplate.model.domain.TestDTO" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@{item.iconImage}"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/nameLabel"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:text="이름 : "
+
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/nameData"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:text="@{item.name}"
+
+            app:layout_constraintEnd_toStartOf="@+id/removeButton"
+            app:layout_constraintStart_toEndOf="@+id/nameLabel"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/levelLabel"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:text="레벨 : "
+
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/nameLabel" />
+
+        <TextView
+            android:id="@+id/levelData"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:text="@{String.valueOf(item.level)}"
+
+            app:layout_constraintEnd_toStartOf="@+id/removeButton"
+            app:layout_constraintStart_toEndOf="@+id/levelLabel"
+            app:layout_constraintTop_toBottomOf="@+id/nameData" />
+
+        <TextView
+            android:id="@+id/addressLabel"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:text="주소 : "
+
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/levelLabel" />
+
+        <TextView
+            android:id="@+id/addressData"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:text="@{item.address}"
+
+            app:layout_constraintEnd_toStartOf="@+id/removeButton"
+            app:layout_constraintStart_toEndOf="@+id/addressLabel"
+            app:layout_constraintTop_toBottomOf="@+id/levelData" />
+
+        <TextView
+            android:id="@+id/hobbyLabel"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:text="취미 : "
+
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/addressLabel" />
+
+        <TextView
+            android:id="@+id/hobbyData"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:text="@{item.hobby}"
+
+            app:layout_constraintEnd_toStartOf="@+id/removeButton"
+            app:layout_constraintStart_toEndOf="@+id/hobbyLabel"
+            app:layout_constraintTop_toBottomOf="@+id/addressData" />
+
+        <TextView
+            android:id="@+id/extraLabel"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:text="기타 : "
+
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/hobbyLabel" />
+
+        <TextView
+            android:id="@+id/extraData"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:text="@{item.extra}"
+
+            app:layout_constraintEnd_toStartOf="@+id/removeButton"
+            app:layout_constraintStart_toEndOf="@+id/extraLabel"
+            app:layout_constraintTop_toBottomOf="@+id/hobbyData" />
+
+        <Button
+            android:id="@+id/removeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="삭제"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
