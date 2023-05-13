@@ -2,6 +2,7 @@ package com.ssafy.basictemplate.behind.activity
 
 import android.os.Bundle
 import android.os.Process
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity

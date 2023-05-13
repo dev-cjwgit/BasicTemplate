@@ -113,6 +113,10 @@ class MainFragmentVM() : ViewModel(), IRecyclerViewCD<TestDTO> {
         )
 
     }
+
+    fun exceptionButtonOnClick() {
+        throw RuntimeException("임의 발생 테스트 예외예요~")
+    }
     // endregion
 
     /**********************************************************************************************/
