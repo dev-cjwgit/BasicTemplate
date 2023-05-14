@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ssafy.basictemplate.R
-import com.ssafy.basictemplate.common.recyclerview.IRecyclerViewCD
 import com.ssafy.basictemplate.common.util.DialogType
 import com.ssafy.basictemplate.common.util.Event
 import com.ssafy.basictemplate.common.interfaces.IBaseConfirm
@@ -16,7 +15,7 @@ import com.ssafy.basictemplate.model.service.TestRetrofitService
 import com.ssafy.basictemplate.viewmodel.adapter.TestRecyclerViewAdapter
 
 
-class MainFragmentVM() : ViewModel(), IRecyclerViewCD<TestDTO> {
+class MainFragmentVM() : ViewModel() {
     companion object {
         val TAG: String? = this::class.qualifiedName
     }
@@ -54,7 +53,7 @@ class MainFragmentVM() : ViewModel(), IRecyclerViewCD<TestDTO> {
                 })
             )
         }, {
-            remove(it);
+            removeToRecyclerView(it);
         })
     }
     /**********************************************************************************************/
@@ -94,7 +93,7 @@ class MainFragmentVM() : ViewModel(), IRecyclerViewCD<TestDTO> {
         TestRetrofitService().getRandomUrlToCatPicture(
             onSuccess = { url ->
                 ImageLoader.loadDrawableFromUrl(url) { drawable ->
-                    add(
+                    addToRecyclerView(
                         TestDTO(
                             drawable,
                             "제목 $index",
@@ -138,24 +137,23 @@ class MainFragmentVM() : ViewModel(), IRecyclerViewCD<TestDTO> {
     /**********************************************************************************************/
     // endregion
 
-    override fun initData(datas: MutableList<TestDTO>) {
+    fun initDataToRecyclerView(datas: MutableList<TestDTO>) {
         adapter.initData(datas)
     }
 
-    override fun clear() {
+    fun clearToRecyclerView() {
         adapter.clear()
     }
 
-    override fun remove(position: Int) {
+    fun removeToRecyclerView(position: Int) {
         adapter.remove(position)
     }
 
-    override fun remove(data: TestDTO) {
+    fun removeToRecyclerView(data: TestDTO) {
         adapter.remove(data)
     }
 
-    override fun add(data: TestDTO) {
+    fun addToRecyclerView(data: TestDTO) {
         adapter.add(data)
     }
-
 }
