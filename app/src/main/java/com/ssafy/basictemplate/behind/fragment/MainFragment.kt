@@ -3,6 +3,7 @@ package com.ssafy.basictemplate.behind.fragment
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -10,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.JsonObject
 import com.ssafy.basictemplate.behind.dialog.ConfirmDialog
 import com.ssafy.basictemplate.behind.dialog.TestDetailDialog
-import com.ssafy.basictemplate.common.dialog.IBaseDialog
+import com.ssafy.basictemplate.common.interfaces.IBaseDialog
 import com.ssafy.basictemplate.common.util.DialogType
 import com.ssafy.basictemplate.databinding.FragmentMainBinding
 import com.ssafy.basictemplate.model.domain.template.TestDTO
@@ -24,6 +25,8 @@ class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private lateinit var viewModel: MainFragmentVM
     private lateinit var navController: NavController
+
+    private lateinit var fragmentActivity: FragmentActivity
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -42,11 +45,12 @@ class MainFragment : Fragment() {
             binding.adapter = viewModel.getAdapter()
         }
 
+        fragmentActivity = requireActivity()
+
         val recyclerView = binding.recycler
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.setHasFixedSize(true)
 
-        initObserve()
 
         return binding.root
     }
@@ -54,6 +58,8 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(requireView())
+
+        initObserve()
     }
 
     override fun onDestroyView() {
@@ -73,7 +79,7 @@ class MainFragment : Fragment() {
             it.getContentIfNotHandled()?.let {
                 when (it.getType()) {
                     DialogType.CONFIRM_DIALOG -> {
-                        val dialog = ConfirmDialog(requireContext(), object : IBaseDialog {
+                        val dialog = ConfirmDialog(fragmentActivity, object : IBaseDialog {
                             override fun confirm(jsonObject: JsonObject?) {
                                 // 확인 버튼이 눌렸을 때 동작을 정의하는 람다식
                                 // 전달된 JsonObject를 사용하여 원하는 작업을 수행합니다.
@@ -92,7 +98,7 @@ class MainFragment : Fragment() {
                     DialogType.TEST_DETAIL_DIALOG -> {
                         val dialog = TestDetailDialog(
                             it.getParams() as TestDTO,
-                            requireContext(),
+                            fragmentActivity,
                             object : IBaseDialog {
                                 override fun confirm(jsonObject: JsonObject?) {
                                     // 확인 버튼이 눌렸을 때 동작을 정의하는 람다식

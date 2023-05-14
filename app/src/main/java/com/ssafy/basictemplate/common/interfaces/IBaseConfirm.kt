@@ -1,4 +1,6 @@
-package com.ssafy.basictemplate.common.util
+package com.ssafy.basictemplate.common.interfaces
+
+import com.ssafy.basictemplate.common.util.DialogType
 
 interface IBaseConfirm<T> {
     fun success()

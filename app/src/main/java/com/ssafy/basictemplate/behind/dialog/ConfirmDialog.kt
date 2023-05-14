@@ -4,7 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import com.google.gson.JsonObject
-import com.ssafy.basictemplate.common.dialog.IBaseDialog
+import com.ssafy.basictemplate.common.interfaces.IBaseDialog
 import com.ssafy.basictemplate.databinding.DialogConfirmBinding
 
 class ConfirmDialog(

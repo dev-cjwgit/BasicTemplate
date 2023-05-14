@@ -8,7 +8,7 @@ import com.ssafy.basictemplate.R
 import com.ssafy.basictemplate.common.recyclerview.IRecyclerViewCD
 import com.ssafy.basictemplate.common.util.DialogType
 import com.ssafy.basictemplate.common.util.Event
-import com.ssafy.basictemplate.common.util.IBaseConfirm
+import com.ssafy.basictemplate.common.interfaces.IBaseConfirm
 import com.ssafy.basictemplate.common.util.ImageLoader
 import com.ssafy.basictemplate.model.domain.Empty
 import com.ssafy.basictemplate.model.domain.template.TestDTO

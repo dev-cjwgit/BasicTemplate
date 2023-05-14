@@ -1,4 +1,4 @@
-package com.ssafy.basictemplate.common.dialog
+package com.ssafy.basictemplate.common.interfaces
 
 import com.google.gson.JsonObject
 

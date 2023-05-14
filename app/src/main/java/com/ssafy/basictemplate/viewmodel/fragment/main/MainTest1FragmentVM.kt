@@ -4,7 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ssafy.basictemplate.R
+import com.ssafy.basictemplate.common.interfaces.IBaseConfirm
+import com.ssafy.basictemplate.common.util.DialogType
 import com.ssafy.basictemplate.common.util.Event
+import com.ssafy.basictemplate.model.domain.Empty
 
 
 class MainTest1FragmentVM() : ViewModel() {
@@ -17,6 +20,8 @@ class MainTest1FragmentVM() : ViewModel() {
     private val _fragmentEvent = MutableLiveData<Event<Int>>()
     val fragmentEvent: LiveData<Event<Int>> get() = _fragmentEvent
 
+    private val _dialogEvent = MutableLiveData<Event<IBaseConfirm<*>>>()
+    val dialogEvent: LiveData<Event<IBaseConfirm<*>>> get() = _dialogEvent
     // endregion
 
     /**********************************************************************************************/
@@ -32,8 +37,25 @@ class MainTest1FragmentVM() : ViewModel() {
 
 
     fun nextButtonOnClick() {
-        _fragmentEvent.postValue(Event(R.id.navigation_main_test_2))
+        _dialogEvent.postValue(
+            Event(object : IBaseConfirm<Empty> {
+                override fun success() {
+                    _fragmentEvent.postValue(Event(R.id.navigation_main_test_2))
+                }
 
+                override fun fail() {
+
+                }
+
+                override fun getType(): DialogType {
+                    return DialogType.CONFIRM_DIALOG
+                }
+
+                override fun getParams(): Empty {
+                    TODO("Not yet implemented")
+                }
+            })
+        )
     }
     // endregion
 
