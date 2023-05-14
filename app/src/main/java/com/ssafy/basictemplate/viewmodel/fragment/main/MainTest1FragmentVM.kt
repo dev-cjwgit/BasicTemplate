@@ -52,7 +52,7 @@ class MainTest1FragmentVM() : ViewModel() {
                 }
 
                 override fun getParams(): Empty {
-                    TODO("Not yet implemented")
+                    throw NotImplementedError()
                 }
             })
         )

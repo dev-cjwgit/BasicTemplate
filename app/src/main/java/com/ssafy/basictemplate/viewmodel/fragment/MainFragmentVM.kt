@@ -84,7 +84,7 @@ class MainFragmentVM() : ViewModel(), IRecyclerViewCD<TestDTO> {
                 }
 
                 override fun getParams(): Empty {
-                    TODO("Not yet implemented")
+                    throw NotImplementedError()
                 }
             })
         )
